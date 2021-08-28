@@ -1,13 +1,9 @@
-Get-ChildItem -Path "." -Filter "*.html" |
+Get-ChildItem -Path "." -Filter "*.htm" |
 ForEach-Object {
     $fileName = $_.FullName
-    (Get-Content $fileName) | 
-    Foreach-Object {
-        $_ # send the current line to output
-        if ($_ -match "<head>") 
-        {
-            #Add Lines after the selected pattern 
-            "<!-- testing -->"
-        }
-    } | Set-Content $fileName
+    $content = Get-Content $fileName
+    $content.replace(
+            '<head>', 
+            '<head><meta name="viewport" content="width=device-width, initial-scale=1.0">') | 
+        Set-Content $fileName
 }
