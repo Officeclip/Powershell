@@ -1,4 +1,4 @@
-Get-ChildItem -Path "." -Filter "*.htm" |
+Get-ChildItem -Path "C:\OfficeClipNew\docs\output\webservice\Content" -Filter "*.htm" |
 ForEach-Object {
     $fileName = $_.FullName
     $content = Get-Content $fileName
